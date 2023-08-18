@@ -6,6 +6,6 @@
 #'
 #' @description Calculate a Basic Set of Time-Series Properties
 #'
-#' @importFrom stats acf sd median quantile IQR lm
+#' @importFrom stats acf sd median quantile IQR lm fft
 #' @importFrom Rcpp sourceCpp
 NULL

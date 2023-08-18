@@ -27,21 +27,23 @@ outs <- get_properties(y)
 outs
 ```
 
-       feature_name        values
-    1          mean -0.2348005061
-    2        median -0.2550122812
-    3          mode            NA
-    4      skewness -0.1014782490
-    5      kurtosis  0.1587664487
-    6          acf1  0.8245322465
-    7          acf2  0.6640152887
-    8          acf3  0.5251296278
-    9          acf4  0.4204586434
-    10         acf5  0.3399235353
-    11          IQR  2.3254584201
-    12           sd  1.7309513289
-    13 linear_trend  0.0003046953
-    14   quantile_5 -3.1409333654
-    15  quantile_25 -1.3391953938
-    16  quantile_75  0.9862630263
-    17  quantile_95  2.5538607800
+                feature_name        values
+    1                   mean  1.312816e-01
+    2                 median  1.243673e-01
+    3                   mode            NA
+    4               skewness  9.191888e-02
+    5               kurtosis  4.030102e-01
+    6                   acf1  7.662411e-01
+    7                   acf2  5.695227e-01
+    8                   acf3  4.259890e-01
+    9                   acf4  3.170189e-01
+    10                  acf5  2.250465e-01
+    11                   IQR  1.813596e+00
+    12                    sd  1.552524e+00
+    13          linear_trend -2.736828e-04
+    14 fft_max_abs_amp_index  9.830000e+02
+    15 fft_max_abs_amp_value  2.318233e+02
+    16            quantile_5 -2.312469e+00
+    17           quantile_25 -8.393946e-01
+    18           quantile_75  9.742012e-01
+    19           quantile_95  2.932869e+00
