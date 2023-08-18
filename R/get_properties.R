@@ -1,6 +1,6 @@
 #' Calculate all features in the package on an input vector
 #'
-#' @importFrom stats sd median acf quantile IQR lm fft
+#' @importFrom stats sd median acf quantile IQR lm fft na.pass
 #'
 #' @param y \code{numeric} vector of values
 #' @return \code{data.frame} that contains the summary statistics for each feature
@@ -19,7 +19,7 @@ get_properties <- function(y){
 
   # Calculate ACF and fft once for efficiency
 
-  acfv <- stats::acf(y, lag.max = length(y) - 1, plot = FALSE, na.action = na.pass)
+  acfv <- stats::acf(y, lag.max = length(y) - 1, plot = FALSE, na.action = stats::na.pass)
   fft_out <- abs(stats::fft(y))
   fft_max <- which.max(fft_out)
 

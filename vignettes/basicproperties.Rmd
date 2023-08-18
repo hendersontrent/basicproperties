@@ -1,26 +1,41 @@
-# basicproperties
-
-R package for the calculation of a set of very basic statistical properties of time-series data.
-
+---
+title: "Introduction to basicproperties"
+author: "Trent Henderson"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 4
+vignette: >
+  %\VignetteIndexEntry{Introduction to basicproperties}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-comment = NA, fig.width = 7, fig.height = 5, cache = FALSE)
+  collapse = TRUE,
+  comment = "#>",
+  fig.height = 7,
+  fig.width = 7,
+  warning = FALSE,
+  fig.align = "center"
+)
 ```
 
-## Installation
-
-You can install the development version of `basicproperties` from GitHub using the following:
-
-```{r eval = FALSE}
-devtools::install_github("hendersontrent/basicproperties")
+```{r setup, message = FALSE, warning = FALSE}
+library(basicproperties)
 ```
+
+## Purpose
+
+`basicproperties` is an R package for the calculation of a set of very basic statistical properties of time-series data. It is the intention that these be used as a form of measurement against which more complex time-series feature sets or individual features can be compared. This ensures that complexity is added only when warranted.
 
 ## Usage
 
 Users can compute all the features in `basicproperties` at once using the main function `get_properties`. This can be run in a one-liner as it only takes an input vector as an argument. Here is a demonstration on a vector of $1000$ samples generated from an AR(1) process:
 
 ```{r, message = FALSE, warning = FALSE}
-library(basicproperties)
 y <- arima.sim(model = list(ar = 0.8), n = 1000)
 outs <- get_properties(y)
 outs
