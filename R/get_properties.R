@@ -1,6 +1,6 @@
 #' Calculate all features in the package on an input vector
 #'
-#' @importFrom stats sd median acf quantile
+#' @importFrom stats sd median acf quantile IQR lm
 #'
 #' @param y \code{numeric} vector of values
 #' @return \code{data.frame} that contains the summary statistics for each feature
@@ -24,12 +24,14 @@ get_properties <- function(y){
   # Return all features
 
   outData <- data.frame(feature_name = c("mean", "median", "mode", "skewness", "kurtosis",
-                                         "acf1", "acf2", "acf3", "acf4", "acf5",
-                                         "sd", "quantile_5", "quantile_25", "quantile_75", "quantile_95"),
+                                         "acf1", "acf2", "acf3", "acf4", "acf5", "IQR",
+                                         "sd", "linear_trend",
+                                         "quantile_5", "quantile_25", "quantile_75", "quantile_95"),
                         values = c(mean(y, na.rm = TRUE), stats::median(y, na.rm = TRUE), calc_mode(y),
                                    skewness(y), kurtosis(y),
                                    acfv$acf[2], acfv$acf[3], acfv$acf[4], acfv$acf[5], acfv$acf[6],
-                                   stats::sd(y, na.rm = TRUE),
+                                   stats::IQR(y, na.rm = TRUE), stats::sd(y, na.rm = TRUE),
+                                   linear_trend(y),
                                    as.numeric(stats::quantile(y, probs = 0.05, na.rm = FALSE)),
                                    as.numeric(stats::quantile(y, probs = 0.25, na.rm = FALSE)),
                                    as.numeric(stats::quantile(y, probs = 0.75, na.rm = FALSE)),
