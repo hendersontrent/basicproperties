@@ -15,4 +15,3 @@
 prop_abs_above_3SD <- function(y, na.rm = FALSE){
   return(length(y[abs(y) > 3 * stats::sd(y, na.rm = na.rm)]) / length(y))
 }
-

@@ -1,6 +1,6 @@
 #' Calculate all features in the package on an input vector
 #'
-#' @importFrom stats sd median acf quantile IQR lm fft na.pass
+#' @importFrom stats sd median acf quantile IQR na.pass
 #'
 #' @param y \code{numeric} vector of values
 #' @return \code{data.frame} that contains the summary statistics for each feature
@@ -17,10 +17,9 @@ get_properties <- function(y){
     stop("Input time series vector y should not have any missing or non-numeric values and should be longer than 10 time points.")
   }
 
-  # Calculate ACF and FFT once for efficiency
+  # Calculate ACF once for efficiency
 
   acfv <- stats::acf(y, lag.max = length(y) - 1, plot = FALSE, na.action = stats::na.pass)$acf
-  fft_out <- stats::fft(y)
 
   # Extract ACF information based on length of input time series
 
@@ -30,11 +29,6 @@ get_properties <- function(y){
   } else{
     acfv <- acfv[2:length(acfv)]
   }
-
-  # Extract FFT information and calculate spectral centroid (mean)
-
-  fft_abs <- abs(fft_out)
-  spectral_centroid <- sum(fft_abs * (seq_along(fft_abs) ^ 1)) / sum(fft_abs)
 
   # Return all features
 
@@ -46,7 +40,7 @@ get_properties <- function(y){
                                    min(y, na.rm = TRUE), max(y, na.rm = TRUE), skewness(y), kurtosis(y),
                                    acfv[1], acfv[2], acfv[3], acfv[4], acfv[5],
                                    stats::IQR(y, na.rm = TRUE), stats::sd(y, na.rm = TRUE),
-                                   linear_trend(y), spectral_centroid, prop_abs_above_3SD(y, na.rm = TRUE),
+                                   linear_trend(y), spectral_centroid(y), prop_abs_above_3SD(y, na.rm = TRUE),
                                    as.numeric(stats::quantile(y, probs = 0.05, na.rm = FALSE)),
                                    as.numeric(stats::quantile(y, probs = 0.25, na.rm = FALSE)),
                                    as.numeric(stats::quantile(y, probs = 0.75, na.rm = FALSE)),
