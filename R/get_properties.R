@@ -17,23 +17,36 @@ get_properties <- function(y){
     stop("Input time series vector y should not have any missing or non-numeric values and should be longer than 10 time points.")
   }
 
-  # Calculate ACF and fft once for efficiency
+  # Calculate ACF and FFT once for efficiency
 
-  acfv <- stats::acf(y, lag.max = length(y) - 1, plot = FALSE, na.action = stats::na.pass)
-  fft_out <- abs(stats::fft(y))
-  fft_max <- which.max(fft_out)
+  acfv <- stats::acf(y, lag.max = length(y) - 1, plot = FALSE, na.action = stats::na.pass)$acf
+  fft_out <- stats::fft(y)
+
+  # Extract ACF information based on length of input time series
+
+  if(length(y) < 6){
+    acfv <- acfv[2:length(acfv)]
+    acfv <- append(acfv, rep(NA, times = length(y) - length(acfv))) # Pad short time series ACF values with NAs to avoid errors below
+  } else{
+    acfv <- acfv[2:length(acfv)]
+  }
+
+  # Extract FFT information and calculate spectral centroid (mean)
+
+  fft_abs <- abs(fft_out)
+  spectral_centroid <- sum(fft_abs * (seq_along(fft_abs) ^ 1)) / sum(fft_abs)
 
   # Return all features
 
-  outData <- data.frame(feature_name = c("mean", "median", "mode", "skewness", "kurtosis",
-                                         "acf1", "acf2", "acf3", "acf4", "acf5", "IQR",
-                                         "sd", "linear_trend", "fft_max_abs_amp_index", "fft_max_abs_amp_value",
+  outData <- data.frame(feature_name = c("mean", "median", "mode", "min", "max", "skewness", "kurtosis",
+                                         "acf_1", "acf_2", "acf_3", "acf_4", "acf_5", "IQR",
+                                         "sd", "linear_trend", "spectral_centroid", "prop_above_3SD",
                                          "quantile_5", "quantile_25", "quantile_75", "quantile_95"),
                         values = c(mean(y, na.rm = TRUE), stats::median(y, na.rm = TRUE), calc_mode(y),
-                                   skewness(y), kurtosis(y),
-                                   acfv$acf[2], acfv$acf[3], acfv$acf[4], acfv$acf[5], acfv$acf[6],
+                                   min(y, na.rm = TRUE), max(y, na.rm = TRUE), skewness(y), kurtosis(y),
+                                   acfv[1], acfv[2], acfv[3], acfv[4], acfv[5],
                                    stats::IQR(y, na.rm = TRUE), stats::sd(y, na.rm = TRUE),
-                                   linear_trend(y), fft_max, fft_out[fft_max],
+                                   linear_trend(y), spectral_centroid, prop_abs_above_3SD(y, na.rm = TRUE),
                                    as.numeric(stats::quantile(y, probs = 0.05, na.rm = FALSE)),
                                    as.numeric(stats::quantile(y, probs = 0.25, na.rm = FALSE)),
                                    as.numeric(stats::quantile(y, probs = 0.75, na.rm = FALSE)),

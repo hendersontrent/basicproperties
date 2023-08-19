@@ -18,7 +18,7 @@ devtools::install_github("hendersontrent/basicproperties")
 Users can compute all the features in `basicproperties` at once using
 the main function `get_properties`. This can be run in a one-liner as it
 only takes an input vector as an argument. Here is a demonstration on a
-vector of $1000$ samples generated from an AR(1) process:
+vector of $T = 1000$ samples generated from an AR(1) process:
 
 ``` r
 library(basicproperties)
@@ -27,23 +27,25 @@ outs <- get_properties(y)
 outs
 ```
 
-                feature_name        values
-    1                   mean  1.541280e-01
-    2                 median  1.441505e-01
-    3                   mode            NA
-    4               skewness  8.650955e-02
-    5               kurtosis -1.027680e-01
-    6                   acf1  8.064171e-01
-    7                   acf2  6.272542e-01
-    8                   acf3  4.634906e-01
-    9                   acf4  3.185824e-01
-    10                  acf5  2.016141e-01
-    11                   IQR  2.298791e+00
-    12                    sd  1.696908e+00
-    13          linear_trend -5.214154e-04
-    14 fft_max_abs_amp_index  5.900000e+01
-    15 fft_max_abs_amp_value  2.120960e+02
-    16            quantile_5 -2.495362e+00
-    17           quantile_25 -9.743530e-01
-    18           quantile_75  1.324438e+00
-    19           quantile_95  2.947213e+00
+            feature_name        values
+    1               mean -5.996035e-02
+    2             median -1.146497e-01
+    3               mode            NA
+    4                min -4.533425e+00
+    5                max  4.563805e+00
+    6           skewness  4.532278e-02
+    7           kurtosis -1.347295e-01
+    8              acf_1  7.763910e-01
+    9              acf_2  5.994091e-01
+    10             acf_3  4.621034e-01
+    11             acf_4  3.631312e-01
+    12             acf_5  2.733970e-01
+    13               IQR  2.078805e+00
+    14                sd  1.537748e+00
+    15      linear_trend -4.893868e-05
+    16 spectral_centroid  5.001209e+02
+    17    prop_above_3SD  0.000000e+00
+    18        quantile_5 -2.545688e+00
+    19       quantile_25 -1.099322e+00
+    20       quantile_75  9.794829e-01
+    21       quantile_95  2.471458e+00
