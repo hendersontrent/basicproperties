@@ -33,7 +33,7 @@ library(basicproperties)
 
 ## Usage
 
-Users can compute all the features in `basicproperties` at once using the main function `get_properties`. This can be run in a one-liner as it only takes an input vector as an argument. Here is a demonstration on a vector of $1000$ samples generated from an AR(1) process:
+Users can compute all the features in `basicproperties` at once using the main function `get_properties`. This can be run in a one-liner as it only takes an input vector as an argument. Here is a demonstration on a vector of $T = 1000$ samples generated from an AR(1) process:
 
 ```{r, message = FALSE, warning = FALSE}
 y <- arima.sim(model = list(ar = 0.8), n = 1000)
