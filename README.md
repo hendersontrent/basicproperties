@@ -28,24 +28,24 @@ outs
 ```
 
             feature_name        values
-    1               mean -1.821965e-01
-    2             median -1.817653e-01
+    1               mean  2.725310e-01
+    2             median  2.932492e-01
     3               mode            NA
-    4                min -4.818706e+00
-    5                max  4.498051e+00
-    6           skewness  1.352707e-02
-    7           kurtosis -2.844129e-01
-    8              acf_1  7.900314e-01
-    9              acf_2  6.297091e-01
-    10             acf_3  5.077755e-01
-    11             acf_4  3.959916e-01
-    12             acf_5  3.225894e-01
-    13               IQR  2.248006e+00
-    14                sd  1.642308e+00
-    15      linear_trend  1.052231e-04
-    16 spectral_centroid  4.984560e+02
-    17    prop_above_3SD  0.000000e+00
-    18        quantile_5 -2.794591e+00
-    19       quantile_25 -1.290922e+00
-    20       quantile_75  9.570832e-01
-    21       quantile_95  2.580504e+00
+    4                min -4.897013e+00
+    5                max  5.069449e+00
+    6           skewness -7.305070e-02
+    7           kurtosis  3.611708e-04
+    8              acf_1  7.929462e-01
+    9              acf_2  6.219461e-01
+    10             acf_3  4.916159e-01
+    11             acf_4  3.763371e-01
+    12             acf_5  2.810531e-01
+    13               IQR  2.091867e+00
+    14                sd  1.559759e+00
+    15      linear_trend  3.260936e-04
+    16 spectral_centroid  4.969835e+02
+    17    prop_above_3SD  3.000000e-03
+    18        quantile_5 -2.343232e+00
+    19       quantile_25 -7.410463e-01
+    20       quantile_75  1.350820e+00
+    21       quantile_95  2.758837e+00
