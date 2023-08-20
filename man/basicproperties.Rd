@@ -3,6 +3,7 @@
 \docType{package}
 \name{basicproperties}
 \alias{basicproperties}
+\alias{basicproperties-package}
 \title{Calculate a Basic Set of Time-Series Properties}
 \description{
 Calculate a Basic Set of Time-Series Properties

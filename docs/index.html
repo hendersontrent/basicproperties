@@ -35,7 +35,7 @@
     
     <a class="navbar-brand me-2" href="index.html">basicproperties</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,14 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
-      <ul class="navbar-nav"></ul>
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/hendersontrent/basicproperties/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 
     
@@ -80,35 +87,43 @@
 </h2>
 <p>Users can compute all the features in <code>basicproperties</code> at once using the main function <code>get_properties</code>. This can be run in a one-liner as it only takes an input vector as an argument. Here is a demonstration on a vector of <span class="math inline"><em>T</em> = 1000</span> samples generated from an AR(1) process:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">basicproperties</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hendersontrent.github.io/basicproperties/">basicproperties</a></span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.sim.html" class="external-link">arima.sim</a></span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ar <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span>
 <span><span class="va">outs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_properties.html">get_properties</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
 <span><span class="va">outs</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>        feature_name        values</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="dv">1</span>               mean  <span class="fl">2.725310e-01</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="dv">2</span>             median  <span class="fl">2.932492e-01</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="dv">1</span>               mean  <span class="fl">8.146526e-02</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="dv">2</span>             median  <span class="fl">1.432727e-01</span></span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="dv">3</span>               mode            <span class="cn">NA</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="dv">4</span>                min <span class="sc">-</span><span class="fl">4.897013e+00</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="dv">5</span>                max  <span class="fl">5.069449e+00</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="dv">6</span>           skewness <span class="sc">-</span><span class="fl">7.305070e-02</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="dv">7</span>           kurtosis  <span class="fl">3.611708e-04</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="dv">8</span>              acf_1  <span class="fl">7.929462e-01</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="dv">9</span>              acf_2  <span class="fl">6.219461e-01</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="dv">10</span>             acf_3  <span class="fl">4.916159e-01</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="dv">11</span>             acf_4  <span class="fl">3.763371e-01</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="dv">12</span>             acf_5  <span class="fl">2.810531e-01</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="dv">13</span>               IQR  <span class="fl">2.091867e+00</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="dv">14</span>                sd  <span class="fl">1.559759e+00</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="dv">15</span>      linear_trend  <span class="fl">3.260936e-04</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="dv">16</span> spectral_centroid  <span class="fl">4.969835e+02</span></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="dv">17</span>    prop_above_3SD  <span class="fl">3.000000e-03</span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="dv">18</span>        quantile_5 <span class="sc">-</span><span class="fl">2.343232e+00</span></span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="dv">19</span>       quantile_25 <span class="sc">-</span><span class="fl">7.410463e-01</span></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="dv">20</span>       quantile_75  <span class="fl">1.350820e+00</span></span>
-<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="dv">21</span>       quantile_95  <span class="fl">2.758837e+00</span></span></code></pre></div>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="dv">4</span>                min <span class="sc">-</span><span class="fl">4.941497e+00</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="dv">5</span>                max  <span class="fl">4.474004e+00</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="dv">6</span>           skewness <span class="sc">-</span><span class="fl">1.442257e-01</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="dv">7</span>           kurtosis <span class="sc">-</span><span class="fl">2.945387e-01</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="dv">8</span>              acf_1  <span class="fl">8.091851e-01</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="dv">9</span>              acf_2  <span class="fl">6.598851e-01</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="dv">10</span>             acf_3  <span class="fl">5.237733e-01</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="dv">11</span>             acf_4  <span class="fl">4.141441e-01</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="dv">12</span>             acf_5  <span class="fl">3.354786e-01</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="dv">13</span>               IQR  <span class="fl">2.367473e+00</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="dv">14</span>                sd  <span class="fl">1.688698e+00</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="dv">15</span>      linear_trend  <span class="fl">5.169243e-04</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="dv">16</span> spectral_centroid  <span class="fl">4.998506e+02</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="dv">17</span>    prop_above_3SD  <span class="fl">0.000000e+00</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="dv">18</span>        quantile_5 <span class="sc">-</span><span class="fl">2.810577e+00</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="dv">19</span>       quantile_25 <span class="sc">-</span><span class="fl">1.120734e+00</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="dv">20</span>       quantile_75  <span class="fl">1.246739e+00</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="dv">21</span>       quantile_95  <span class="fl">2.716110e+00</span></span></code></pre></div>
 </div>
 </div>
-  </main><aside class="col-md-3"><div class="license">
+  </main><aside class="col-md-3"><div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/hendersontrent/basicproperties/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/hendersontrent/basicproperties/issues" class="external-link">Report a bug</a></li>
+</ul>
+</div>
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
