@@ -1,6 +1,7 @@
 #' @useDynLib basicproperties
 #'
 #' @docType package
+#' @aliases basicproperties-package
 #' @name basicproperties
 #' @title Calculate a Basic Set of Time-Series Properties
 #'
