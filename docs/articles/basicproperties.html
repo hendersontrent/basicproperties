@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">basicproperties</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +76,7 @@
                         <h4 data-toc-skip class="author">Trent
 Henderson</h4>
             
-            <h4 data-toc-skip class="date">2023-08-20</h4>
+            <h4 data-toc-skip class="date">2023-09-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/hendersontrent/basicproperties/blob/HEAD/vignettes/basicproperties.Rmd" class="external-link"><code>vignettes/basicproperties.Rmd</code></a></small>
       <div class="d-none name"><code>basicproperties.Rmd</code></div>
@@ -106,29 +106,22 @@ is a demonstration on a vector of <span class="math inline">\(T =
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.sim.html" class="external-link">arima.sim</a></span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ar <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span>
 <span><span class="va">outs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_properties.html">get_properties</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
-<span><span class="va">outs</span></span>
-<span><span class="co">#&gt;         feature_name        values</span></span>
-<span><span class="co">#&gt; 1               mean  4.690946e-02</span></span>
-<span><span class="co">#&gt; 2             median  6.042965e-02</span></span>
-<span><span class="co">#&gt; 3               mode            NA</span></span>
-<span><span class="co">#&gt; 4                min -6.156031e+00</span></span>
-<span><span class="co">#&gt; 5                max  4.955066e+00</span></span>
-<span><span class="co">#&gt; 6           skewness -1.427817e-01</span></span>
-<span><span class="co">#&gt; 7           kurtosis  4.516663e-01</span></span>
-<span><span class="co">#&gt; 8              acf_1  7.772833e-01</span></span>
-<span><span class="co">#&gt; 9              acf_2  5.992397e-01</span></span>
-<span><span class="co">#&gt; 10             acf_3  4.626224e-01</span></span>
-<span><span class="co">#&gt; 11             acf_4  3.545467e-01</span></span>
-<span><span class="co">#&gt; 12             acf_5  2.952222e-01</span></span>
-<span><span class="co">#&gt; 13               IQR  2.017082e+00</span></span>
-<span><span class="co">#&gt; 14                sd  1.552680e+00</span></span>
-<span><span class="co">#&gt; 15      linear_trend  4.100205e-04</span></span>
-<span><span class="co">#&gt; 16 spectral_centroid  5.003180e+02</span></span>
-<span><span class="co">#&gt; 17    prop_above_3SD  6.000000e-03</span></span>
-<span><span class="co">#&gt; 18        quantile_5 -2.550267e+00</span></span>
-<span><span class="co">#&gt; 19       quantile_25 -9.523431e-01</span></span>
-<span><span class="co">#&gt; 20       quantile_75  1.064739e+00</span></span>
-<span><span class="co">#&gt; 21       quantile_95  2.541563e+00</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">outs</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   feature_name       values  feature_set</span></span>
+<span><span class="co">#&gt; 1         mean  0.078300260 distribution</span></span>
+<span><span class="co">#&gt; 2       median  0.081857965 distribution</span></span>
+<span><span class="co">#&gt; 3         mode           NA distribution</span></span>
+<span><span class="co">#&gt; 4          min -4.583086454 distribution</span></span>
+<span><span class="co">#&gt; 5          max  4.902474410 distribution</span></span>
+<span><span class="co">#&gt; 6     skewness -0.005914857 distribution</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="computational-performance">Computational performance<a class="anchor" aria-label="anchor" href="#computational-performance"></a>
+</h2>
+<p><code>basicproperties</code> is highly computationally efficient,
+scaling nearly linearly with time-series size. Computation time in
+seconds for a range of time series lengths is presented below.</p>
+<p><img src="comp-time.png" width="600" alt="Computation time for basicproperties."></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

@@ -35,7 +35,7 @@
     
     <a class="navbar-brand me-2" href="index.html">basicproperties</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,34 +85,53 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
+<p><code>basicproperties</code> currently calculates <span class="math inline">516</span> features from the following domains:</p>
+<ul>
+<li>
+<code>"distribution"</code>—features which ignore temporal ordering and compute summary statistics of the distribution</li>
+<li>
+<code>"ACF"</code>—coefficients of the autocorrelation function up to a lag of <span class="math inline">5</span>
+</li>
+<li>
+<code>"linearity"</code>—features associated with the linear trend of the time series</li>
+<li>
+<code>"quantiles"</code>—values for <span class="math inline">100</span> quantiles of the data</li>
+<li>
+<code>"fft"</code>—the first <span class="math inline">100</span> coefficients of the fast Fourier transform, including their real, imaginary, absolute, and angle components, as per the <a href="https://github.com/blue-yonder/tsfresh/" class="external-link"><code>tsfresh</code></a> package for Python</li>
+</ul>
 <p>Users can compute all the features in <code>basicproperties</code> at once using the main function <code>get_properties</code>. This can be run in a one-liner as it only takes an input vector as an argument. Here is a demonstration on a vector of <span class="math inline"><em>T</em> = 1000</span> samples generated from an AR(1) process:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hendersontrent.github.io/basicproperties/">basicproperties</a></span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.sim.html" class="external-link">arima.sim</a></span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ar <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span>
-<span><span class="va">outs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_properties.html">get_properties</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
-<span><span class="va">outs</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>        feature_name        values</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="dv">1</span>               mean  <span class="fl">8.146526e-02</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="dv">2</span>             median  <span class="fl">1.432727e-01</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="dv">3</span>               mode            <span class="cn">NA</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="dv">4</span>                min <span class="sc">-</span><span class="fl">4.941497e+00</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="dv">5</span>                max  <span class="fl">4.474004e+00</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="dv">6</span>           skewness <span class="sc">-</span><span class="fl">1.442257e-01</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="dv">7</span>           kurtosis <span class="sc">-</span><span class="fl">2.945387e-01</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="dv">8</span>              acf_1  <span class="fl">8.091851e-01</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="dv">9</span>              acf_2  <span class="fl">6.598851e-01</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="dv">10</span>             acf_3  <span class="fl">5.237733e-01</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="dv">11</span>             acf_4  <span class="fl">4.141441e-01</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="dv">12</span>             acf_5  <span class="fl">3.354786e-01</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="dv">13</span>               IQR  <span class="fl">2.367473e+00</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="dv">14</span>                sd  <span class="fl">1.688698e+00</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="dv">15</span>      linear_trend  <span class="fl">5.169243e-04</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="dv">16</span> spectral_centroid  <span class="fl">4.998506e+02</span></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="dv">17</span>    prop_above_3SD  <span class="fl">0.000000e+00</span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="dv">18</span>        quantile_5 <span class="sc">-</span><span class="fl">2.810577e+00</span></span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="dv">19</span>       quantile_25 <span class="sc">-</span><span class="fl">1.120734e+00</span></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="dv">20</span>       quantile_75  <span class="fl">1.246739e+00</span></span>
-<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="dv">21</span>       quantile_95  <span class="fl">2.716110e+00</span></span></code></pre></div>
+<span><span class="va">outs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_properties.html">get_properties</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code></pre></div>
+<p>Here is a sample of twenty of the features:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>     feature_name        values  feature_set</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="dv">1</span>            mean <span class="sc">-</span><span class="fl">0.0682273117</span> distribution</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="dv">2</span>          median <span class="sc">-</span><span class="fl">0.0285242011</span> distribution</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="dv">3</span>            mode            <span class="cn">NA</span> distribution</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="dv">4</span>             min <span class="sc">-</span><span class="fl">5.3285657460</span> distribution</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="dv">5</span>             max  <span class="fl">4.5480362786</span> distribution</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="dv">6</span>        skewness <span class="sc">-</span><span class="fl">0.1532091500</span> distribution</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="dv">7</span>        kurtosis <span class="sc">-</span><span class="fl">0.2380394101</span> distribution</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="dv">8</span>           acf_1  <span class="fl">0.8040463790</span>          ACF</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="dv">9</span>           acf_2  <span class="fl">0.6564698047</span>          ACF</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="dv">10</span>          acf_3  <span class="fl">0.5495283435</span>          ACF</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="dv">11</span>          acf_4  <span class="fl">0.4743650582</span>          ACF</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="dv">12</span>          acf_5  <span class="fl">0.3881577375</span>          ACF</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="dv">13</span>            IQR  <span class="fl">2.2607101884</span> distribution</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="dv">14</span>             sd  <span class="fl">1.6758453734</span> distribution</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="dv">15</span>   linear_trend <span class="sc">-</span><span class="fl">0.0003344607</span>    linearity</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="dv">16</span> prop_above_3SD  <span class="fl">0.0010000000</span> distribution</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="dv">17</span>     quantile_1 <span class="sc">-</span><span class="fl">4.0865978434</span>    quantiles</span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="dv">18</span>     quantile_2 <span class="sc">-</span><span class="fl">3.5270973394</span>    quantiles</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="dv">19</span>     quantile_3 <span class="sc">-</span><span class="fl">3.3587224511</span>    quantiles</span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="dv">20</span>     quantile_4 <span class="sc">-</span><span class="fl">3.1733633912</span>    quantiles</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="computational-performance">Computational performance<a class="anchor" aria-label="anchor" href="#computational-performance"></a>
+</h2>
+<p><code>basicproperties</code> is highly computationally efficient, scaling nearly linearly with time-series size. Computation time in seconds for a range of time series lengths is presented below.</p>
+<p><img src="articles/comp-time.png" width="600" alt="Computation time for basicproperties."></p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

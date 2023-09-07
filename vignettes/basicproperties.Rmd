@@ -38,5 +38,11 @@ Users can compute all the features in `basicproperties` at once using the main f
 ```{r, message = FALSE, warning = FALSE}
 y <- arima.sim(model = list(ar = 0.8), n = 1000)
 outs <- get_properties(y)
-outs
+head(outs)
 ```
+
+## Computational performance
+
+`basicproperties` is highly computationally efficient, scaling nearly linearly with time-series size. Computation time in seconds for a range of time series lengths is presented below.
+
+<img src="comp-time.png" width="600" alt="Computation time for basicproperties." />
