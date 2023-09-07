@@ -1,8 +1,8 @@
 Package: basicproperties
 Type: Package
 Title: Calculate a Basic Set of Time-Series Properties
-Version: 0.2.2
-Date: 2023-08-20
+Version: 0.2.3
+Date: 2023-09-07
 Authors@R: c(
   person("Trent", "Henderson", email = "then6675@uni.sydney.edu.au", role = c("cre", "aut"))
   )

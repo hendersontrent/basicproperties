@@ -25,7 +25,13 @@
     <loc>https://hendersontrent.github.io/basicproperties/reference/basicproperties.html</loc>
   </url>
   <url>
+    <loc>https://hendersontrent.github.io/basicproperties/reference/calculate_quantiles.html</loc>
+  </url>
+  <url>
     <loc>https://hendersontrent.github.io/basicproperties/reference/calc_mode.html</loc>
+  </url>
+  <url>
+    <loc>https://hendersontrent.github.io/basicproperties/reference/fft_coefficients.html</loc>
   </url>
   <url>
     <loc>https://hendersontrent.github.io/basicproperties/reference/get_properties.html</loc>
